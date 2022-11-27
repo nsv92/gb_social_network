@@ -1,13 +1,13 @@
-package ru.gb.gb_social_network;
+package ru.gb.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GbSocialNetworkApplication {
+public class BackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GbSocialNetworkApplication.class, args);
+        SpringApplication.run(BackendApplication.class, args);
     }
 
 }

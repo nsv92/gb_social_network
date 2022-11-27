@@ -1,4 +1,4 @@
-package ru.gb.gb_social_network.entity;
+package ru.gb.backend.entity;
 
 import javax.persistence.*;
 

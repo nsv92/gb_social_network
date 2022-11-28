@@ -14,7 +14,7 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User  user;
+    private User user;
 
     @Column(name = "head", length = 1000)
     private String head;

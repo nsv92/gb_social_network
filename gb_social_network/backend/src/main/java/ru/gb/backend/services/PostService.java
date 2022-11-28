@@ -26,7 +26,7 @@ public class PostService {
     }
 
     private PostDto convertPostToDto(Post post) {
-        return new PostDto(post.getId(), post.getUser(), post.getHead(), post.getDate());
+        return new PostDto(post.getId(), post.getUser().getId(), post.getHead(), post.getDate());
     }
 
     private List<PostDto> convertPostsToList(List<Post> posts) {

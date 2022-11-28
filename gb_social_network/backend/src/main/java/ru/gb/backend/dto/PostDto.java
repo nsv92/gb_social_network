@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PostDto {
     private Long id;
-    private User user;
+    private Long userId;
     private String head;
     private LocalDateTime date;
 }

@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    @Query("SELECT p from Post p where p.user.id = ?1 ORDER BY p.date DESC")
-    List<Post> getPostsByUserId(Long userId);
+//    @Query("SELECT p from Post p where p.user.id = ?1 ORDER BY p.date DESC")
+//    List<Post> getPostsByUserId(Long userId);
+
+    List<Post> findAllPostsByUserId(Long userId);
 }

@@ -22,7 +22,7 @@ public class PostService {
     }
 
     public List<PostDto> getAllPostsByUserId(Long userId) {
-        return convertPostsToList(postRepository.getPostsByUserId(userId));
+        return convertPostsToList(postRepository.findAllPostsByUserId(userId));
     }
 
     private PostDto convertPostToDto(Post post) {

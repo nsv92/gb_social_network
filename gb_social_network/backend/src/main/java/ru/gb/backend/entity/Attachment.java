@@ -1,8 +1,13 @@
 package ru.gb.backend.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "attachments")
 public class Attachment {
 
@@ -11,34 +16,14 @@ public class Attachment {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    //TODO понять как будем хранить вложения (фото, может быть файлы)
-    @Column(name = "body", nullable = false)
-    private String body;
+    @Column(name = "storage_file_name", nullable = false, length = 256, unique = true)
+    private String storageFileName;
+
+    @Column(name  = "extension", nullable = false, length = 10)
+    private String extension;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Attachment() {
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 }

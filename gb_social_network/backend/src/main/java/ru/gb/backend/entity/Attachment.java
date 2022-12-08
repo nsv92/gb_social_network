@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Table(name = "attachments")
+//TODO Может быть переименовать в Picture ???
 public class Attachment {
 
     @Id
@@ -24,6 +25,10 @@ public class Attachment {
 
     @ManyToOne
     @JoinColumn(name = "post_id")
+    //TODO Понять сколько может быть аттачментов у поста
+    //TODO На фронте у нас есть форма для создания поста, в которой мы загружаем наш аттачмент.
+    // При отправке этой формы в БД пишется пост и аттачмент, но для записи аттачмента нам нужен id поста,
+    // который нам еще не известен. Разобрать этот момент. Тупой вариант - добавлене аттачмента в отдельной форме
     private Post post;
 
 }

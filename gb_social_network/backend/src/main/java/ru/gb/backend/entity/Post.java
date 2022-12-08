@@ -1,8 +1,12 @@
 package ru.gb.backend.entity;
 
+import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -21,36 +25,4 @@ public class Post {
 
     @Column(name = "date")
     private LocalDateTime date;
-
-    public Post() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getHead() {
-        return head;
-    }
-
-    public void setHead(String head) {
-        this.head = head;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 }

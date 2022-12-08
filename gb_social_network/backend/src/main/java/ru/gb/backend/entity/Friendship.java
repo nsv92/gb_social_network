@@ -1,6 +1,7 @@
 package ru.gb.backend.entity;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Table(name = "friendship")
@@ -41,4 +42,5 @@ public class Friendship {
     public Long getId() {
         return id;
     }
+
 }

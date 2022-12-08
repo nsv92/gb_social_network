@@ -1,7 +1,11 @@
 package ru.gb.backend.entity;
 
+import lombok.*;
 import javax.persistence.*;
 
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "attachments")
 public class Attachment {
@@ -19,26 +23,4 @@ public class Attachment {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public Attachment() {
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
 }

@@ -1,6 +1,7 @@
 package ru.gb.backend.entity;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 @Entity
@@ -28,6 +29,11 @@ public class User {
     @Column(name = "phone", nullable = true, unique = true, length = 15)
     private String phone;
 
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
     public User() {
     }
@@ -74,5 +80,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }

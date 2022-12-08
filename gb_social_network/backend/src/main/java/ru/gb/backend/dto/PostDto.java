@@ -2,7 +2,6 @@ package ru.gb.backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import ru.gb.backend.entity.User;
 
 import java.time.LocalDateTime;
 

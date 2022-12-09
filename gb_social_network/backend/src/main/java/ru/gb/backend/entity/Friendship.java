@@ -1,7 +1,12 @@
 package ru.gb.backend.entity;
 
+import lombok.*;
 import javax.persistence.*;
+import java.util.Optional;
 
+@NoArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "friendship")
 public class Friendship {
@@ -19,26 +24,4 @@ public class Friendship {
     @JoinColumn(name = "friend_id")
     private User friend;
 
-    public User getFriend() {
-        return friend;
-    }
-
-    public void setFriend(User friend) {
-        this.friend = friend;
-    }
-
-    public Friendship() {
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }

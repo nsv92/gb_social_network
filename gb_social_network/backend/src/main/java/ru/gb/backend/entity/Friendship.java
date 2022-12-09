@@ -2,6 +2,7 @@ package ru.gb.backend.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Optional;
 
 @NoArgsConstructor
 @Setter

@@ -2,6 +2,7 @@ package ru.gb.backend.entity;
 
 import lombok.*;
 import javax.persistence.*;
+import java.util.Collection;
 
 
 @NoArgsConstructor
@@ -31,4 +32,10 @@ public class User {
 
     @Column(name = "phone", nullable = true, unique = true, length = 15)
     private String phone;
+
+    @ManyToMany
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 }

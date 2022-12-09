@@ -26,11 +26,6 @@ public class UserController {
         this.postService = postService;
     }
 
-//    @GetMapping("/{id}/posts")
-//    public List<PostDto> getAllPostsByUserId(@PathVariable Long id) {
-//        return postService.getAllPostsByUserId(id);
-//    }
-
     @GetMapping("/all")
     public List<User> findAllUsers() {
         return userService.findAllUsers();

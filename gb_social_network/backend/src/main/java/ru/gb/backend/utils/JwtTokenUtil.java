@@ -4,11 +4,10 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
+import ru.gb.backend.exceptions.TokenParserException;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -63,7 +62,7 @@ public class JwtTokenUtil {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception ex) {
-            throw new RuntimeException(ex.getMessage(), ex);
+            throw new TokenParserException(ex.getMessage(), ex);
         }
     }
 }

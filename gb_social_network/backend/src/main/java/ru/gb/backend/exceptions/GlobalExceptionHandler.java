@@ -23,8 +23,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new FieldsValidationError(e.getErrorFieldsMessages()), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<AppError> catchResponseStatusException(RuntimeException e) {
+    @ExceptionHandler(TokenParserException.class)
+    public ResponseEntity<AppError> catchResponseStatusException(TokenParserException e) {
         log.error(e.getMessage(), e);
         return new ResponseEntity<>(new AppError(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
     }

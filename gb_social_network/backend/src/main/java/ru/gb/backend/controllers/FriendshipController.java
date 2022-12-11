@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.backend.dto.FriendshipDto;
 import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.Friendship;
-import ru.gb.backend.entity.User;
 import ru.gb.backend.services.FriendshipService;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.User;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;

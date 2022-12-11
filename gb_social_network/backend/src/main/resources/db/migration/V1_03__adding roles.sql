@@ -21,5 +21,5 @@ values ('ROLE_USER'),
 insert into users_roles (user_id, role_id)
 values (1, 1),
        (1, 2),
-       (8, 1),
-       (9, 3);
+       (3, 1),
+       (3, 3);

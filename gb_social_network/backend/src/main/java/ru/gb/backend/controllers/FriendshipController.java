@@ -1,11 +1,11 @@
 package ru.gb.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.backend.dto.FriendshipDto;
 import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.Friendship;
-import ru.gb.backend.entity.User;
 import ru.gb.backend.services.FriendshipService;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;
@@ -18,6 +18,7 @@ public class FriendshipController {
     private final UserService userService;
     private final PostService postService;
     private final FriendshipService friendshipService;
+
 
     @Autowired
     public FriendshipController(UserService userService, PostService postService, FriendshipService friendshipService) {
@@ -48,12 +49,12 @@ public class FriendshipController {
     }
 
     @PostMapping
-    public Friendship updateFriendship(@RequestBody FriendshipDto friendshipDto) {
-        Friendship friendship = new Friendship();
-//        User user = new User(userService.getUserForId(friendshipDto.getUserId()));
-//        User friend = new User(userService.getUserForId(friendshipDto.getUserId());
-//        friendship.setUser(user);
-//        friendship.setFriend(friendship.getFriend());
-        return friendshipService.updateFriendship(friendship);
+    public String updateFriendship(@RequestBody FriendshipDto friendshipDto) {
+        return friendshipService.updateFriendship(friendshipDto);
     }
+
+//    @PostMapping
+//    public String deleteFriendship(@RequestBody FriendshipDto friendshipDto) {
+//        return friendshipService.updateFriendship(friendshipDto);
+//    }
 }

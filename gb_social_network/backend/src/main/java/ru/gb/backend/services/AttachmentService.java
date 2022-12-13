@@ -52,12 +52,12 @@ public class AttachmentService {
             uploadDir.mkdirs();
         }
         String fileName = UUID.randomUUID().toString();
-        file.transferTo(new File(uploadDir + "/" + fileName));
+        String extension = "." + file.getContentType().split("/", 2)[1];
+        file.transferTo(new File(uploadDir + "/" + fileName + extension));
         Attachment attachment = new Attachment();
         attachment.setPost(postRepository.getReferenceById(postId));
         attachment.setStorageFileName(fileName);
-        //TODO Проверить правильность записи расширения картинки в БД
-        attachment.setExtension(file.getContentType());
+        attachment.setExtension(extension);
         attachmentRepository.save(attachment);
         return attachment;
     }

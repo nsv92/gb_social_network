@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.Post;
-import ru.gb.backend.entity.User;
 import ru.gb.backend.repositories.PostRepository;
 
 import java.util.List;

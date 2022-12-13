@@ -1,9 +1,6 @@
 package ru.gb.backend.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,16 +8,16 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "posts")
-public class Post {
+@Table(name = "posts_answer")
+public class PostAnswer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_name")
     private User user;
 
     @Column(name = "head", length = 1000)
@@ -28,4 +25,5 @@ public class Post {
 
     @Column(name = "date")
     private LocalDateTime date;
+
 }

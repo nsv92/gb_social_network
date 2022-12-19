@@ -12,7 +12,7 @@ import ru.gb.backend.entity.Friendship;
 import ru.gb.backend.services.FriendshipService;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;
-import ru.gb.backend.services.exception.FriendshipDuplicate;
+//import ru.gb.backend.services.exception.FriendshipDuplicate;
 
 import java.util.List;
 
@@ -68,9 +68,9 @@ public class FriendshipController {
 //        return friendshipService.updateFriendship(friendshipDto);
 //    }
 
-    @ExceptionHandler
-    public ResponseEntity<String> ConstraintViolationException(FriendshipDuplicate e){
-        return new ResponseEntity<>("Вы уже друзья...", HttpStatus.CONFLICT);
-    }
+//    @ExceptionHandler
+//    public ResponseEntity<String> ConstraintViolationException(FriendshipDuplicate e){
+//        return new ResponseEntity<>("Вы уже друзья...", HttpStatus.CONFLICT);
+//    }
 
 }

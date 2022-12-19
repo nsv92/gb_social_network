@@ -1,19 +1,24 @@
 package ru.gb.backend.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.backend.dto.PostDto;
+import ru.gb.backend.entity.Friendship;
+import ru.gb.backend.entity.Post;
 import ru.gb.backend.entity.User;
+import ru.gb.backend.services.FriendshipService;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;
-import ru.gb.backend.services.exception.UserNotFound;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Api("User controller")
 public class UserController {
 
     private final UserService userService;
@@ -26,37 +31,22 @@ public class UserController {
         this.postService = postService;
     }
 
-//    @GetMapping("/{id}/posts")
-//    public List<PostDto> getAllPostsByUserId(@PathVariable Long id) {
-//        return postService.getAllPostsByUserId(id);
-//    }
+    @GetMapping("/{id}/posts")
+    @ApiOperation("Get all post by user id")
+    public List<PostDto> getAllPostsByUserId(@PathVariable Long id) {
+        return postService.getAllPostsByUserId(id);
+    }
 
     @GetMapping("/all")
-    public List<User> findAllUsers() {
-        return userService.findAllUsers();
+    @ApiOperation("Get all user")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @GetMapping(path="/id/{id}")
-    public User findById(@PathVariable("id") Long id){
-        return userService.findById(id).orElseThrow(UserNotFound::new);
+    @GetMapping("/{id}")
+    @ApiOperation("Get user by id")
+    public Optional<User> getUserForId(@PathVariable Long id) {
+        return userService.getUserForId(id);
     }
 
-    @PostMapping
-    public User addUser(@RequestBody User user){
-        userService.createOrUpdate(user);
-        return user;
-    }
-    @PutMapping
-    public User updateUser(@RequestBody User user){
-        userService.createOrUpdate(user);
-        return user;
-    }
-    @DeleteMapping("/id/{id}")
-    public void deleteById(@PathVariable("id") Long id){
-        userService.deleteById(id);
-    }
-    @ExceptionHandler
-    public ResponseEntity<String> notFoundExceptionHandler(UserNotFound e){
-        return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-    }
 }

@@ -11,7 +11,12 @@ import java.util.Optional;
 @Setter
 @Getter
 @Entity
-@Table(name = "friendship")
+@Table(name = "friendship",
+        uniqueConstraints =
+                {
+                        @UniqueConstraint(columnNames = "user_id"),
+                        @UniqueConstraint(columnNames = "friend_id")
+                })
 public class Friendship {
 
     @Id

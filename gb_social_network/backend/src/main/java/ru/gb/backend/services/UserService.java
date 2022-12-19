@@ -1,6 +1,5 @@
 package ru.gb.backend.services;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.backend.entity.User;
@@ -10,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class UserService {
 
     private final UserRepository userRepository;
@@ -20,18 +18,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User createOrUpdate(User user){
-        return userRepository.save(user);
-    }
-    public Optional<User> findById(Long id){
+    public Optional<User> getUserForId(Long id) {
         return userRepository.findById(id);
     }
-    public void deleteById(Long id){
-        userRepository.deleteById(id);
-    }
 
+    public User getUserForIds(Long id){
+        return userRepository.findById(id)
+                .orElse(new User());
+    }
 }

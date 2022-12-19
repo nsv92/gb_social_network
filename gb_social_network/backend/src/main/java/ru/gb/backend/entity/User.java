@@ -1,8 +1,14 @@
 package ru.gb.backend.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
-
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,14 +33,6 @@ public class User {
 
     @Column(name = "phone", nullable = true, unique = true, length = 15)
     private String phone;
-
-
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     public String getPassword() {
         return password;
@@ -74,5 +72,9 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

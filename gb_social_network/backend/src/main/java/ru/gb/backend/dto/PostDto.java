@@ -9,7 +9,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PostDto {
     private Long id;
-    private Long userId;
-    private String head;
     private LocalDateTime date;
+    private String head;
+    private Long userId;
+    private String name;
+
+    public PostDto() {
+    }
+
+    public PostDto(Long id, Long userId, String head, LocalDateTime date, String name) {
+        this.id = id;
+        this.userId = userId;
+        this.head = head;
+        this.date = date;
+        this.name = name;
+    }
+
+
 }

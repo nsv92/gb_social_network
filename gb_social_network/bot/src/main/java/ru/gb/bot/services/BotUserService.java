@@ -32,4 +32,8 @@ public class BotUserService {
         botUser.setSubscription(false);
         botUserRepository.save(botUser);
     }
+
+    public BotUser getBotUserByNickName(String nickName) throws EntityNotFoundException{
+        return botUserRepository.getBotUserByAppNickname(nickName);
+    }
 }

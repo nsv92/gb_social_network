@@ -5,11 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.gb.bot.config.Config;
+import ru.gb.bot.entities.Notification;
 import ru.gb.bot.handlers.CommandHandler;
 
 import java.util.ArrayList;
@@ -66,6 +68,16 @@ public class Bot extends TelegramLongPollingBot {
                     throw new RuntimeException(e);
                 }
             } else log.error("Null message from user: {}", getUserNameFromUpdate(update));
+        }
+    }
+
+    public void executeNotification(SendMessage sendMessage) {
+        try {
+            execute(sendMessage);
+            log.info("Notification was sent successfully!");
+        } catch (TelegramApiException e) {
+            log.error("Exception during sending notification message: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 }

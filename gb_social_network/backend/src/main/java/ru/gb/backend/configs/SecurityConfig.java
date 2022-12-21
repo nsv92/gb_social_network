@@ -3,6 +3,7 @@ package ru.gb.backend.configs;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -31,6 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/v1/users/all").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/api/v1/users").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/users/passwordRecovery").permitAll()
+                .antMatchers(HttpMethod.GET,"/api/v1/users/changePassword").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/v1/users/savePassword").permitAll()
                 .antMatchers("/api/v1/users/**").authenticated()
                 .antMatchers("/api/v1/attachments/**").authenticated()
                 .antMatchers("/api/v1/friendships/**").authenticated()

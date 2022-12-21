@@ -1,5 +1,6 @@
 package ru.gb.backend.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Collection;
 @Setter
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
 public class User {
 
     @Id

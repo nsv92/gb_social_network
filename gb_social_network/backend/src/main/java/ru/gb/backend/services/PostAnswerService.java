@@ -4,11 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.gb.backend.dto.PostAnswerDto;
-import ru.gb.backend.dto.PostDto;
-import ru.gb.backend.entity.Post;
 import ru.gb.backend.entity.PostAnswer;
 import ru.gb.backend.repositories.PostAnswerRepository;
-import ru.gb.backend.repositories.PostRepository;
 
 import java.util.List;
 import java.util.Optional;

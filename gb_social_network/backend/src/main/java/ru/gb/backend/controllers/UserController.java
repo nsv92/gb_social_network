@@ -1,6 +1,9 @@
 package ru.gb.backend.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.backend.dto.PasswordDto;
 import ru.gb.backend.dto.UserDto;
@@ -8,15 +11,23 @@ import ru.gb.backend.entity.User;
 import ru.gb.backend.exceptions.ResourceNotFoundException;
 import ru.gb.backend.services.EmailService;
 import ru.gb.backend.services.PasswordResetTokenService;
+import ru.gb.backend.dto.PostDto;
+import ru.gb.backend.entity.Friendship;
+import ru.gb.backend.entity.Post;
+import ru.gb.backend.entity.User;
+import ru.gb.backend.services.FriendshipService;
+
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;
 
 import java.util.List;
 import java.util.Optional;
+
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Api("User controller")
 public class UserController {
 
     private final UserService userService;
@@ -35,15 +46,6 @@ public class UserController {
         this.passwordResetTokenService = passwordResetTokenService;
     }
 
-    @GetMapping("/all")
-    public List<UserDto> findAllUsers() {
-        return userService.findAllUsers();
-    }
-
-    @GetMapping(path = "/id/{id}")
-    public UserDto findById(@PathVariable("id") Long id) {
-        return userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь не найден"));
-    }
 
     @PostMapping
     public UserDto addUser(@RequestBody UserDto user) {
@@ -89,5 +91,23 @@ public class UserController {
         } else {
             return "Error";
         }
+    }
+
+    @GetMapping("/{id}/posts")
+    @ApiOperation("Get all post by user id")
+    public List<PostDto> getAllPostsByUserId(@PathVariable Long id) {
+        return postService.getAllPostsByUserId(id);
+    }
+
+    @GetMapping("/all")
+    @ApiOperation("Get all user")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("Get user by id")
+    public Optional<User> getUserForId(@PathVariable Long id) {
+        return userService.getUserForId(id);
     }
 }

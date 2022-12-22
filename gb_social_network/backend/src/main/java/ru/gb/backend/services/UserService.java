@@ -5,7 +5,6 @@ import org.springframework.security.access.method.P;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -36,6 +35,7 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
     }
+
 
     public List<UserDto> findAllUsers() {
         return convertUsers(userRepository.findAll());
@@ -53,11 +53,26 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> getUserForId(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public User getUserForIds(Long id){
+        return userRepository.findById(id)
+                .orElse(new User());
+    }
+
+
     public Optional<User> findByNickname(String nickname) {
         return userRepository.findByNickName(nickname);
     }
 
-    @Override
+//    @Override
     @Transactional
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
         User user = findByNickname(nickname).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", nickname)));

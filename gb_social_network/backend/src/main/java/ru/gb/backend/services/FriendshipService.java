@@ -10,7 +10,6 @@ import ru.gb.backend.repositories.FriendshipRepository;
 import ru.gb.backend.repositories.UserRepository;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,35 +51,22 @@ public class FriendshipService {
     }
 
     public String updateFriendship(FriendshipDto friendshipDto) {
-//       boolean bool = (isExistFriendByKey(friendshipDto.getUserId(), friendshipDto.getFriend_id()));
-
         User user = userRepository.findById(friendshipDto.getUserId())
                 .orElse(new User());
         User friend = userRepository.findById(friendshipDto.getFriend_id())
                 .orElse(new User());
-        friendshipRepository.save(new Friendship(user, friend));
-        return "Вы подружились... ";
-//        }else{
-//            return  "Вы уже друзья c ";
-//        }
+        try {
+            friendshipRepository.save(new Friendship(user, friend));
+        } catch (RuntimeException e) {
+            return "Вы уже друзья c " + user.getName();
+        }
+
+        return "Вы подружились c " + user.getName();
+
     }
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElse(new User());
     }
-
-//    Метод для проверки есть ли уже такие друзья
-//    public boolean isExistFriendByKey(Long userId, Long friend_id) {
-//        Friendship friendship = friendshipRepository.read_UserId_and_Friend_id(userId, friend_id);
-//        return Objects.isNull(friendship);
-//    }
-
-//    public Friendship getFriendships(Long userId, Long friend_id){
-//        User user = userRepository.findById(userId)
-//                .orElse(new User());
-//        User friend = userRepository.findById(friend_id)
-//                .orElse(new User());
-//        return new Friendship(user, friend);
-//    }
 }

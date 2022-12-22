@@ -8,11 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.Post;
-import ru.gb.backend.entity.User;
 import ru.gb.backend.services.PostService;
 import ru.gb.backend.services.UserService;
 import ru.gb.backend.services.exception.PostNotFound;
-
 
 import java.util.List;
 

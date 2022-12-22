@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import ru.gb.bot.config.Config;
-import ru.gb.bot.entities.Notification;
 import ru.gb.bot.handlers.CommandHandler;
 
 import java.util.ArrayList;

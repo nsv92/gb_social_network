@@ -1,85 +1,73 @@
 package ru.gb.backend.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.log4j.Log4j2;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import ru.gb.backend.dto.PostDto;
 import ru.gb.backend.entity.Post;
-import ru.gb.backend.exceptions.ResourceNotFoundException;
-import ru.gb.backend.services.AttachmentService;
+import ru.gb.backend.entity.User;
 import ru.gb.backend.services.PostService;
+import ru.gb.backend.services.UserService;
+import ru.gb.backend.services.exception.PostNotFound;
 
-import java.io.IOException;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/posts")
-@Log4j2
+@Api("Post controller")
 public class PostController {
-    private PostService postService;
+    private final UserService userService;
 
-    private AttachmentService attachmentService;
+    private final PostService postService;
 
     @Autowired
-    public void setPostService (PostService postService,
-                                AttachmentService attachmentService){
+    public PostController(UserService userService, PostService postService) {
+        this.userService = userService;
         this.postService = postService;
-        this.attachmentService = attachmentService;
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Get all post by user id")
     public List<PostDto> getAllPostsByUserId (@PathVariable Long id){
         return postService.getAllPostsByUserId(id);
     }
 
     @GetMapping("/all")
-    public List<Post> findAllPost() {
+    @ApiOperation("Get all posts")
+    public List<PostDto> getAllPosts() {
         return postService.findAllPosts();
     }
 
     @GetMapping(path="/id/{id}")
+    @ApiOperation("Get post by post id")
     public Post findById(@PathVariable("id") Long id){
-        return postService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Сообщение не найдено"));
+        return postService.findById(id).orElseThrow(PostNotFound::new);
     }
 
     @PostMapping
+    @ApiOperation("Add post")
     public Post addPost(@RequestBody Post post){
         postService.createOrUpdate(post);
         return post;
     }
-
-    @PostMapping("/add")
-    public Post addPostWithAttachment(String jsonPost, @RequestParam("attachment") MultipartFile attachment){
-        Post post;
-        try {
-            post = new ObjectMapper().readValue(jsonPost, Post.class);
-        } catch (JsonProcessingException e) {
-            log.error("JSON to Post parse error", e);
-            throw new RuntimeException(e);
-        }
-        postService.createOrUpdate(post);
-        if (attachment != null) {
-            try {
-                attachmentService.addAttachment(attachment, post.getId());
-            } catch (IOException e) {
-                log.error("Problem with new attachment" ,e);
-                throw new RuntimeException(e);
-            }
-        }
-        return post;
-    }
-
-
     @PutMapping
+    @ApiOperation("Post update")
     public Post updatePost(@RequestBody Post post){
         postService.createOrUpdate(post);
         return post;
     }
     @DeleteMapping("/id/{id}")
+    @ApiOperation("Delete post by post id")
     public void deleteById(@PathVariable("id") Long id){
         postService.deleteById(id);
     }
+    @ExceptionHandler
+    public ResponseEntity<String> notFoundExceptionHandler(PostNotFound e){
+        return new ResponseEntity<>("Post not found", HttpStatus.NOT_FOUND);
+    }
+
 }

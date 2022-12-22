@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
 
@@ -27,26 +26,24 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public List<User> findAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User createOrUpdate(User user){
-        return userRepository.save(user);
-    }
-    public Optional<User> findById(Long id){
+    public Optional<User> getUserForId(Long id) {
         return userRepository.findById(id);
     }
-    public void deleteById(Long id){
-        userRepository.deleteById(id);
-    }
 
+    public User getUserForIds(Long id){
+        return userRepository.findById(id)
+                .orElse(new User());
+    }
 
     public Optional<User> findByNickname(String nickname) {
         return userRepository.findByNickName(nickname);
     }
 
-    @Override
+//    @Override
     @Transactional
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
         User user = findByNickname(nickname).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", nickname)));

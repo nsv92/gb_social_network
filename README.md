@@ -23,7 +23,6 @@
     - Spring boot
     - Postgres
     - Flyway
-    - Rabbitmq
     - React
     - Docker compose
     - Telegram Bot API
@@ -33,7 +32,7 @@
 Функционал проекта:
 -------------------
 
-На текущий момент реализован следующий фунеционал:
+На текущий момент реализован следующий функционал:
 
     - Регистрация новых пользователей
     - Аутенфикация пользователей по логину / паролю
@@ -49,10 +48,10 @@
 
 Проект разворачивается локально. 
 
-БД поднимается в докере с помоющью src/main/resources/docker/docker-compose.yaml.
+БД поднимается в докере с помощью src/main/resources/docker/docker-compose.yaml.
 Все необходмые миграции прописаны в Flyway.
 
-Модуль Backend закпускается через src/main/java/ru/gb/backend/BackendApplication.java на порте 8080.
+Модуль Backend запускается через src/main/java/ru/gb/backend/BackendApplication.java на порте 8080.
 Модуль bot закпускается через src/main/java/ru/gb/bot/BotApplication.java порт 8081.
 
 

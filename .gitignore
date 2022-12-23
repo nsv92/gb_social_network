@@ -47,7 +47,6 @@ target/
 ### IntelliJ IDEA ###
 .idea
 *.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
@@ -64,3 +63,5 @@ build/
 .vscode/
 
 >>>>>>> dev_nsv
+
+!README.md

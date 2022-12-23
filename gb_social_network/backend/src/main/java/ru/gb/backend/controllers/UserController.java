@@ -47,8 +47,13 @@ public class UserController {
     }
 
 
+    @GetMapping("/all")
+    public List<UserDto> findAllUsers() {
+       return userService.findAllUsers();
+    }
+
     @GetMapping(path="/id/{id}")
-    public User findById(@PathVariable("id") Long id){
+    public UserDto findById(@PathVariable("id") Long id){
         return userService.findById(id).orElseThrow(() -> new ResourceNotFoundException("Пользователь не найден"));
     }
 

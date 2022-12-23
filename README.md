@@ -66,4 +66,7 @@
 Скриншоты:
 ----------
 
-![Screenshot](https://github.com/nsv92/gb_social_network/blob/6eaf0d317591bfe5357360f5588657bb4c98afc2/gb_social_network/images/apple.png)
+Пост запрос в контроллер бота для отправки уведомления пользователю:
+![bot_1](gb_social_network/images/bot_1.png)
+Присланное уведомление пользователю от бота:
+![bot_2](gb_social_network/images/bot_2.png)

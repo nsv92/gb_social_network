@@ -62,3 +62,8 @@
 ТЗ проекта: https://docs.google.com/document/d/1Rwk382TkX1YBWELjp_S4BsBSnedoNQH6V2QzXCfadOA/edit?usp=sharing
 
 Доска трелло: https://trello.com/b/yNmyLn38
+
+Скриншоты:
+----------
+
+![Screenshot](https://github.com/nsv92/gb_social_network/blob/6eaf0d317591bfe5357360f5588657bb4c98afc2/gb_social_network/images/apple.png)

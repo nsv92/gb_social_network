@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
@@ -72,7 +72,7 @@ public class UserService {
         return userRepository.findByNickName(nickname);
     }
 
-//    @Override
+    @Override
     @Transactional
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
         User user = findByNickname(nickname).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", nickname)));

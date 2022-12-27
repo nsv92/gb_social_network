@@ -23,6 +23,7 @@
     - Spring boot
     - Postgres
     - Flyway
+    - Rabbitmq
     - React
     - Docker compose
     - Telegram Bot API
@@ -32,7 +33,7 @@
 Функционал проекта:
 -------------------
 
-На текущий момент реализован следующий функционал:
+На текущий момент реализован следующий фунеционал:
 
     - Регистрация новых пользователей
     - Аутенфикация пользователей по логину / паролю
@@ -48,10 +49,10 @@
 
 Проект разворачивается локально. 
 
-БД поднимается в докере с помощью src/main/resources/docker/docker-compose.yaml.
+БД поднимается в докере с помоющью src/main/resources/docker/docker-compose.yaml.
 Все необходмые миграции прописаны в Flyway.
 
-Модуль Backend запускается через src/main/java/ru/gb/backend/BackendApplication.java на порте 8080.
+Модуль Backend закпускается через src/main/java/ru/gb/backend/BackendApplication.java на порте 8080.
 Модуль bot закпускается через src/main/java/ru/gb/bot/BotApplication.java порт 8081.
 
 
@@ -61,3 +62,16 @@
 ТЗ проекта: https://docs.google.com/document/d/1Rwk382TkX1YBWELjp_S4BsBSnedoNQH6V2QzXCfadOA/edit?usp=sharing
 
 Доска трелло: https://trello.com/b/yNmyLn38
+
+Примеры работы основных модулей:
+----------
+Аутенфикация
+![фгер](gb_social_network/images/auth.jpeg)
+
+Контроллер post
+![фгер](gb_social_network/images/all_posts.jpeg)
+
+Пост запрос в контроллер бота для отправки уведомления пользователю:
+![bot_1](gb_social_network/images/bot_1.png)
+Присланное уведомление пользователю от бота:
+![bot_2](gb_social_network/images/bot_2.png)

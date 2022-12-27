@@ -5,6 +5,7 @@ import org.springframework.security.access.method.P;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByNickName(nickname);
     }
 
-    @Override
+
     @Transactional
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
         User user = findByNickname(nickname).orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", nickname)));
